@@ -11,6 +11,15 @@ from sklearn.model_selection import train_test_split
 
 st.set_page_config(page_title="簡單線性回歸｜CRISP-DM 教學", page_icon="📈", layout="wide")
 
+# ========= 字型設定（解決亂碼） =========
+# 嘗試使用常見中文字型，若找不到則退回英文字型
+font_candidates = ["Microsoft JhengHei", "PingFang TC", "Noto Sans CJK TC", "SimHei", "Heiti TC", "Arial Unicode MS", "DejaVu Sans"]
+available_fonts = [f for f in font_candidates if f in [font.name for font in fm.fontManager.ttflist]]
+chosen_font = available_fonts[0] if available_fonts else "DejaVu Sans"
+
+plt.rcParams["font.sans-serif"] = [chosen_font]
+plt.rcParams["axes.unicode_minus"] = False
+
 # =============================
 # Sidebar — 使用者可調參數
 # =============================
@@ -161,10 +170,6 @@ with st.expander("CRISP‑DM 5 ─ Evaluation（評估）", expanded=True):
 # =============================
 with st.expander("視覺化（資料點、模型與殘差）", expanded=True):
     import matplotlib.pyplot as plt
-
-    # 🔧 中文字型設定（避免亂碼）
-    plt.rcParams['font.sans-serif'] = ['Taipei Sans TC Beta', 'Microsoft JhengHei', 'SimHei', 'Arial Unicode MS']  # 根據系統字型自動匹配
-    plt.rcParams['axes.unicode_minus'] = False  # 正常顯示負號
 
     # 依 x 範圍畫預測線
     xx = np.linspace(x_min, x_max, 200).reshape(-1, 1)
