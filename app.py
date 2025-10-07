@@ -8,6 +8,7 @@ import streamlit as st
 from sklearn.linear_model import LinearRegression
 from sklearn.metrics import mean_squared_error, r2_score
 from sklearn.model_selection import train_test_split
+import matplotlib.font_manager as fm
 
 st.set_page_config(page_title="簡單線性回歸｜CRISP-DM 教學", page_icon="📈", layout="wide")
 
