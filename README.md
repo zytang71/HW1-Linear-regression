@@ -1,52 +1,60 @@
-# 線性回歸互動網頁（CRISP-DM 作業）
+# HW1: Linear regression
+
 
 **課程名稱**：物聯網數據分析與應用
 **學生姓名**：唐政遠
 **學號**：7114056073    
 
----
+## 過程
 
-## 一、專案說明
+prompt:
 
-本作業以 **簡單線性回歸（Simple Linear Regression）** 為例，示範 **CRISP-DM** 資料科學流程之應用。使用者可透過 Streamlit 介面互動調整資料生成參數（斜率 a、截距 b、資料點數、雜訊大小等），並觀察模型建立與評估結果的變化。
+```
+請幫我按照以下條件寫出一個可以透過github架設一個streamlit的互動式網頁
 
-本系統旨在讓學習者理解資料分析的完整流程，而非僅執行模型訓練。
+write python to solve simple linear regression problem, following CRISP-DM steps,
+             要有prompt and 過程, 不可只有CODE AND RESULT
+             1. CRISP-DM
+             2. allow user to modify a in ax+b, noise, number of points 
+             3. streamlit or flask web, 框架 deployment
+```
 
----
+[回答](streamlit_線性回歸（crisp_dm）範例：可用_git_hub_一鍵部署.md)
 
-## 二、CRISP-DM 流程概要
+python 格式有問題
 
-1. **Business Understanding（業務理解）** — 明確定義問題：建立能預測 y 的線性模型。
-2. **Data Understanding（資料理解）** — 生成並檢視模擬資料的分布與統計。
-3. **Data Preparation（資料準備）** — 切分訓練與測試集，為建模做準備。
-4. **Modeling（建模）** — 使用 sklearn 的 LinearRegression 估計參數。
-5. **Evaluation（評估）** — 以 MSE 與 R² 檢驗模型表現。
-6. **Deployment（部署）** — 在網頁展示結果並提供資料與模型摘要下載。
+prompt:
 
----
+```
+app.py line 29的字串有點問題
+```
 
-## 三、系統架構與執行方式
+answer:
+```
+好眼力 👀
+在 app.py 第 29 行（即側邊欄那一段 st.markdown("**教學提示 Prompt（可編輯）**：\n ...")）
+的多行字串確實有語法錯誤 —— Streamlit 的 st.markdown() 不支援直接在字串裡用換行和縮排混用而沒加引號閉合。
 
-* **框架**：Python + Streamlit
-* **主要檔案**：`app.py`（主程式）、`requirements.txt`（環境設定）
-* **部署方式**：上傳至 GitHub 並以 Streamlit Community Cloud 自動部署。
+✅ 正確修改方式如下：
 
----
+找到這一段（錯誤版本）：
 
-## 四、作業目的與學習重點
+st.markdown("**教學提示 Prompt（可編輯）**：
+    > 以簡單線性回歸為例，依 CRISP-DM 步驟說明並示範：在指定 a、b 與雜訊參數下，產生資料、切分訓練/測試、建立模型、計算 MSE 與 R²、視覺化迴歸線與殘差，最後提供可下載的資料與模型係數。")
 
-* 理解 CRISP-DM 在資料分析專案中的實際應用。
-* 透過互動介面觀察資料參數對模型結果的影響。
-* 培養從資料生成、建模到部署的完整思維流程。
 
----
+改成這樣（✅ 正確多行字串寫法）：
 
-## 五、延伸方向（選擇性）
+st.markdown(
+    """**教學提示 Prompt（可編輯）**：
+> 以簡單線性回歸為例，依 CRISP-DM 步驟說明並示範：
+> 在指定 a、b 與雜訊參數下，產生資料、切分訓練/測試、
+> 建立模型、計算 MSE 與 R²、視覺化迴歸線與殘差，
+> 最後提供可下載的資料與模型係數。"""
+)
 
-* 嘗試多元線性回歸或加入正則化。
-* 加入異常值、不同噪聲分布的情境測試。
-* 擴充自動報告或儀表板輸出功能。
 
----
+這類錯誤。
 
-> 本文件作為課堂作業說明用途，提供教師與助教快速了解系統結構與學習重點。
+要我幫你整份 app.py 自動套用修正並提供最新版（可直接執行無誤的版本）嗎？
+```
