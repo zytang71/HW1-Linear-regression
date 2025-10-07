@@ -9,6 +9,7 @@ from sklearn.linear_model import LinearRegression
 from sklearn.metrics import mean_squared_error, r2_score
 from sklearn.model_selection import train_test_split
 import matplotlib.font_manager as fm
+import matplotlib.pyplot as plt
 
 st.set_page_config(page_title="簡單線性回歸｜CRISP-DM 教學", page_icon="📈", layout="wide")
 
@@ -170,7 +171,7 @@ with st.expander("CRISP‑DM 5 ─ Evaluation（評估）", expanded=True):
 # 視覺化：資料點與迴歸線、殘差圖
 # =============================
 with st.expander("視覺化（資料點、模型與殘差）", expanded=True):
-    import matplotlib.pyplot as plt
+
 
     # 依 x 範圍畫預測線
     xx = np.linspace(x_min, x_max, 200).reshape(-1, 1)
