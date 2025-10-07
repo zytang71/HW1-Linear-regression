@@ -162,6 +162,10 @@ with st.expander("CRISP‑DM 5 ─ Evaluation（評估）", expanded=True):
 with st.expander("視覺化（資料點、模型與殘差）", expanded=True):
     import matplotlib.pyplot as plt
 
+    # 🔧 中文字型設定（避免亂碼）
+    plt.rcParams['font.sans-serif'] = ['Taipei Sans TC Beta', 'Microsoft JhengHei', 'SimHei', 'Arial Unicode MS']  # 根據系統字型自動匹配
+    plt.rcParams['axes.unicode_minus'] = False  # 正常顯示負號
+
     # 依 x 範圍畫預測線
     xx = np.linspace(x_min, x_max, 200).reshape(-1, 1)
     yy = model.predict(xx)
